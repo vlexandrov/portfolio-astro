@@ -9,6 +9,11 @@ import Talk from '@/components/ui/Talk.astro';
 import { sortJobsByDate } from '@/lib/utils';
 
 const entry = await getEntry('pages', 'homepage');
+
+if (!entry) {
+  throw new Error('Homepage entry not found');
+}
+
 const { Content } = await render(entry);
 
 const links = await getCollection('links');
